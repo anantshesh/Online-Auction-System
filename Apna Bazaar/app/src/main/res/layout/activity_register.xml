@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/login_design"
+    tools:context=".myfolder.register">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="APNA BAZAAR"
+        android:textSize="40sp"
+        android:textColor="#ffffff"
+        android:textAlignment="center"
+        android:layout_marginTop="150dp"
+        />
+
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/email_register"
+        android:hint="Email"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:inputType="textEmailAddress"
+        android:layout_margin="10dp"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/password_register"
+        android:hint="Password"
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff"
+        android:inputType="textPassword"
+        android:layout_margin="10dp"
+        />
+
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/register_button"
+        android:text="Register"
+        android:textAlignment="center"
+        android:background="@color/colorSecondaryinner"
+        android:textColor="#ffffff"
+        android:layout_margin="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/login_register"
+        android:text="Already Registered? Login Here!"
+        android:textAlignment="center"
+        android:layout_margin="10dp"
+        android:textColor="#ffffff"
+        />
+
+    <ProgressBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminateTint="@color/colorSecondaryinner"
+        android:id="@+id/progressregister"
+        android:visibility="invisible"/>
+
+</LinearLayout>

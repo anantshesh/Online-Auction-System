@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:contentPadding="5dp"
+    android:layout_margin="10dp"
+    app:cardUseCompatPadding="true"
+    app:cardBackgroundColor="#ffffff">
+
+
+    <LinearLayout
+        android:id="@+id/bidhistorydetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_close"
+                android:background="#ffffff"
+                />
+
+            <ImageButton
+                android:id="@+id/share"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_share"
+                android:layout_marginLeft="350dp"
+                android:background="#ffffff"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/bhpImageIv"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="#ffffff" />
+
+        <TextView
+            android:id="@+id/bhpTitleTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:autoLink="all"
+            android:textColor="#000000"
+
+            android:text="Title"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rs."
+                android:textSize="12sp"/>
+
+            <TextView
+                android:id="@+id/bhpPriceTv"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:autoLink="all"
+                android:paddingLeft="5dp"
+                android:text="Amount"
+                android:textColor="#000000"
+
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+
+                android:paddingLeft="225dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quantity:"
+                android:textSize="12sp"
+                />
+
+            <TextView
+                android:id="@+id/bhpQuantityTv"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:autoLink="all"
+                android:textColor="#000000"
+
+                android:textStyle="bold"
+                android:textSize="16sp"
+
+                android:text="100"/>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:id="@+id/bhpLocationTv"
+                android:text="Location"
+                android:drawableLeft="@drawable/ic_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:id="@+id/bhpDescriptionTv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autoLink="all"
+            android:text="The Description of the Post"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seller"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+           android:layout_marginTop="5dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:id="@+id/bhuimage"
+                android:src="@drawable/ic_add_image"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/bhuname"
+                android:textColor="#000000"
+                android:textSize="20sp"
+                android:text="Name"/>
+        </LinearLayout>
+
+
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#F5F0F0"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <!--<Button
+                android:id="@+id/placeBidButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Place Bid"
+                android:background="@null"/>
+
+            <Button
+                android:id="@+id/shareButton"
+                android:drawableRight="@drawable/ic_share"
+                android:drawablePadding="5dp"
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Share"
+                android:background="@null"
+                />-->
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_margin="10dp"
+                    android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Highest Bidder: "
+                    android:textSize="20sp"
+                    android:textAlignment="center"
+                    android:textColor="#FF0000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/winner"
+                        android:textSize="20sp"
+                        android:textAlignment="center"
+
+                        android:text="Higgest Bidder"/>
+
+
+            </LinearLayout>
+
+          <!--  <androidx.recyclerview.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+
+                android:id="@+id/bhbidderRecycler"
+                android:orientation="horizontal">
+
+
+
+            </androidx.recyclerview.widget.RecyclerView>-->
+
+               <androidx.recyclerview.widget.RecyclerView
+                   android:layout_width="match_parent"
+                   android:layout_height="200dp"
+                   android:id="@+id/recyclerForbidHistory">
+
+               </androidx.recyclerview.widget.RecyclerView>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</ScrollView>

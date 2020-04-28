@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+
+
+    <group >
+    <item android:id="@+id/nav_profile"
+        android:title="@string/Profile"/>
+
+        <item android:id="@+id/nav_order"
+            android:title="@string/Winner_List"/>
+
+        <item android:id="@+id/nav_bid"
+            android:title="@string/Bid_History"/>
+
+        <item android:id="@+id/nav_product"
+            android:title="@string/Sell_your_Product"/>
+
+        <item android:id="@+id/your_product"
+            android:title="Your Products"/>
+
+
+        <item android:id="@+id/feedback"
+            android:title="@string/Feedback"/>
+
+        <item android:id="@+id/contact"
+            android:title="@string/Contact_Us"/>
+
+        <item android:id="@+id/about_us"
+            android:title="@string/About_Us"/>
+
+    </group>
+
+    <item android:title="@string/Account">
+
+        <menu>
+            <item android:id="@+id/change_password"
+                android:title="@string/Change_Password"/>
+
+            <item android:id="@+id/change_language"
+                android:title="@string/Change_Language"/>
+
+            <item android:id="@+id/delete_account"
+                android:title="@string/Delete_Account"/>
+
+            <item android:id="@+id/logout"
+                android:title="@string/Logout"/>
+        </menu>
+    </item>
+
+</menu>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".layout.LiveAuctions">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#FFFFFF"
+        android:layout_marginBottom="40dp"
+        android:layout_marginTop="60dp">
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Live Auction Posts"
+                android:layout_marginLeft="135dp"
+                android:textSize="20sp"
+                />
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_location"
+                android:layout_marginLeft="80dp"
+                android:id="@+id/cityImage"
+                android:background="#ffffff"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:layout_marginBottom="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+
+                android:text="Select Category"
+
+                />
+
+            <Spinner
+                android:id="@+id/categoryOfItem_liveAuctions"
+                android:layout_width="120dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="165dp"
+                android:layout_marginTop="10dp"
+                android:scrollbarSize="22dp">
+
+            </Spinner>
+        </LinearLayout>
+
+<!--
+        <include layout="@layout/city_search_recycler" />
+
+-->
+
+
+       <!-- <include layout="@layout/upcoming_recycler_layout"/>
+
+        <include layout="@layout/city_search_recycler"/>
+
+        <include layout="@layout/perishable_item_recycler"/>
+
+        <include layout="@layout/most_viewd_item_recycler"/>
+
+
+        -->
+        <!--
+
+ <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/allRecycler"/>
+
+
+
+             -->
+
+       <!-- <ListView
+            android:id="@+id/live_auctions_listview"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+
+        </ListView>
+-->
+
+       <include layout="@layout/all_products"/>
+
+
+    </LinearLayout>
+
+
+
+
+</FrameLayout>

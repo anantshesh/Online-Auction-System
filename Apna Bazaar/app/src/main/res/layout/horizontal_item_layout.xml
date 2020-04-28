@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:gravity="center"
+    android:layout_height="wrap_content"
+
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:elevation="3dp"
+        android:orientation="vertical">
+   <ImageView
+       android:layout_width="75dp"
+       android:layout_height="75dp"
+       android:layout_margin="10dp"
+       android:id="@+id/imageSimilar"
+       android:src="@drawable/ic_add_image"
+       />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Title"
+            android:textSize="18sp"
+            android:id="@+id/titleSimilarProduct"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amount"
+            android:textSize="12sp"
+            android:textColor="@color/colorPrimaryinner"
+            android:id="@+id/amountSimilarProduct"
+
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Place"
+            android:textSize="12sp"
+            android:id="@+id/placeSimilarProduct"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
