@@ -42,7 +42,6 @@ public class order_history extends AppCompatActivity {
 
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,19 +65,28 @@ public class order_history extends AppCompatActivity {
                 Post addPost = dataSnapshot.getValue(Post.class);
                 Calendar calendar = Calendar.getInstance();
                 Date enddate = null;
-                try{
+                try {
                     currentDate = mdformat.parse(mdformat.format(calendar.getTime()));
                     enddate = mdformat.parse(addPost.getPduration());
 
-                }catch (Exception e ){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-                if (currentDate.compareTo(enddate)>= 0){
+                if (currentDate.compareTo(enddate) >= 0) {
+
+
                     posts.add(addPost);
                     allPostAdapter = new allPostAdapter(order_history.this, "order", posts);
                     recyclerView.setAdapter(allPostAdapter);
+
                     //myAdapter.notifyDataSetChanged();
                 }
+
+
+
+
+
+
             }
 
             @Override
@@ -105,6 +113,8 @@ public class order_history extends AppCompatActivity {
 
 
     }
+
+
 
 }
 

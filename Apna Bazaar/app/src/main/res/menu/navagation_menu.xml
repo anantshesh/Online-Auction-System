@@ -26,8 +26,7 @@
         <item android:id="@+id/feedback"
             android:title="@string/Feedback"/>
 
-        <item android:id="@+id/contact"
-            android:title="@string/Contact_Us"/>
+
 
         <item android:id="@+id/about_us"
             android:title="@string/About_Us"/>
@@ -40,8 +39,8 @@
             <item android:id="@+id/change_password"
                 android:title="@string/Change_Password"/>
 
-            <item android:id="@+id/change_language"
-                android:title="@string/Change_Language"/>
+           <!-- <item android:id="@+id/change_language"
+                android:title="@string/Change_Language"/> -->
 
             <item android:id="@+id/delete_account"
                 android:title="@string/Delete_Account"/>

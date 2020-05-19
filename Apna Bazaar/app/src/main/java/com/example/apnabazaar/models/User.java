@@ -2,12 +2,12 @@ package com.example.apnabazaar.models;
 
 public class User {
 
-    String district, email, image, name, phone, pincode,state, uid;
+    String district, email, image, name, phone, pincode,state, uid, Type;
 
     public User() {
     }
 
-    public User(String district, String email, String image, String name, String phone, String pincode, String state, String uid) {
+    public User(String district, String email, String image, String name, String phone, String pincode, String state, String uid, String type) {
         this.district = district;
         this.email = email;
         this.image = image;
@@ -16,6 +16,7 @@ public class User {
         this.pincode = pincode;
         this.state = state;
         this.uid = uid;
+        Type = type;
     }
 
     public String getDistrict() {
@@ -80,5 +81,13 @@ public class User {
 
     public void setUid(String uid) {
         this.uid = uid;
+    }
+
+    public String getType() {
+        return Type;
+    }
+
+    public void setType(String type) {
+        Type = type;
     }
 }

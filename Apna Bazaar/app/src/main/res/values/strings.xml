@@ -82,7 +82,6 @@
         <item>Textile</item>
     </string-array>
 
-
     <string-array name="city_of_item">
 
         <item>Belgaum</item>
@@ -101,6 +100,12 @@
         <item>Mumbai</item>
         <item>Pune</item>
         <item>Chennai</item>
+    </string-array>
+
+    <string-array name="type">
+        <item>Seller</item>
+        <item>Buyer</item>
+        <item>Both</item>
     </string-array>
 
 

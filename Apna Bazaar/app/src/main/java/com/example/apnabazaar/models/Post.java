@@ -5,7 +5,8 @@ import java.io.Serializable;
 public class Post implements Serializable {
 
 
-        private String pId, pTitle, pDesc, pMinPrice, puphone ,pQuantity,aDateTime ,pucity, upiid, pCity, pustate, pupincode, pCatogry, pImage, pTime, pduration , uid, uEmail, uName, uDp;
+        private String pId, pTitle, pDesc, pMinPrice, puphone ,pQuantity,aDateTime ,pucity, upiid, pCity, pustate, pupincode, pCatogry, pImage, pTime, pduration , uid, uEmail, uName, uDp, Count;
+
 
 
     public Post() {
@@ -14,8 +15,7 @@ public class Post implements Serializable {
 
     // create or add the pQuantity constructor below
 
-
-    public Post(String pId, String pTitle, String pDesc, String pMinPrice, String puphone, String pQuantity, String aDateTime, String pucity, String upiid, String pCity, String pustate, String pupincode, String pCatogry, String pImage, String pTime, String pduration, String uid, String uEmail, String uName, String uDp) {
+    public Post(String pId, String pTitle, String pDesc, String pMinPrice, String puphone, String pQuantity, String aDateTime, String pucity, String upiid, String pCity, String pustate, String pupincode, String pCatogry, String pImage, String pTime, String pduration, String uid, String uEmail, String uName, String uDp, String count) {
         this.pId = pId;
         this.pTitle = pTitle;
         this.pDesc = pDesc;
@@ -36,6 +36,7 @@ public class Post implements Serializable {
         this.uEmail = uEmail;
         this.uName = uName;
         this.uDp = uDp;
+        this.Count = count;
     }
 
     public String getpId() {
@@ -196,5 +197,13 @@ public class Post implements Serializable {
 
     public void setuDp(String uDp) {
         this.uDp = uDp;
+    }
+
+    public String getCount() {
+        return Count;
+    }
+
+    public void setCount(String count) {
+        Count = count;
     }
 }

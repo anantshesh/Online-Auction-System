@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.apnabazaar.R;
 import com.example.apnabazaar.models.bidhistoryModel;
 import com.example.apnabazaar.myfolder.bidHistoryDetail;
-import com.example.apnabazaar.myfolder.induidual_posts;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;

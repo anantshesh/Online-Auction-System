@@ -82,11 +82,5 @@ public class YourProduct extends AppCompatActivity {
 
 
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        System.out.println("checkff onDestroy call");
-       YourProduct.this.finish();
 
-    }
 }

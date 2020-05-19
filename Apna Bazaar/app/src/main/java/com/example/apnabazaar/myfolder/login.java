@@ -1,8 +1,5 @@
 package com.example.apnabazaar.myfolder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -17,6 +14,9 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apnabazaar.R;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -136,6 +136,7 @@ public class login extends AppCompatActivity {
                                 hashMap.put("district", "");
                                 hashMap.put("state", "");
                                 hashMap.put("pincode", "");
+                                hashMap.put("Type","");
                                 hashMap.put("image", "");
 
                                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -146,11 +147,8 @@ public class login extends AppCompatActivity {
 
                             }
 
-
-
                             Toast.makeText(login.this, "Login Successful", Toast.LENGTH_SHORT ).show();
-                            startActivity(new Intent(getApplicationContext(),MainActivity.class));
-
+                            startActivity(new Intent(login.this, MainActivity.class));
                         } else {
                             Toast.makeText(login.this,"Error" + task.getException().getMessage(),Toast.LENGTH_SHORT ).show();
                             progressBar.setVisibility(View.GONE);

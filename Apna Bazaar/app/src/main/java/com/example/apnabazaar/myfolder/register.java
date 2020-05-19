@@ -1,23 +1,23 @@
 package com.example.apnabazaar.myfolder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
-
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.apnabazaar.R;
 import com.google.android.gms.tasks.OnCompleteListener;
-
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,6 +35,8 @@ public class register extends AppCompatActivity {
     Button register_b;
     TextView login_b;
     ImageView m_dp;
+    Spinner spinner;
+    String type;
     private FirebaseAuth firebaseAuth;
 
     ProgressBar progressBar;
@@ -54,6 +56,10 @@ public class register extends AppCompatActivity {
         progressBar = findViewById(R.id.progressregister);
         register_b = findViewById(R.id.register_button);
         login_b = findViewById(R.id.login_register);
+        spinner = findViewById(R.id.sellorbuy);
+        ArrayAdapter<CharSequence> adapterCategoryOfItem = ArrayAdapter.createFromResource(register.this, R.array.type, android.R.layout.simple_spinner_item);
+        adapterCategoryOfItem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapterCategoryOfItem);
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -91,6 +97,7 @@ public class register extends AppCompatActivity {
             public void onClick(View v) {
                 final String memail = email.getText().toString().trim();
                 String mpassword = password.getText().toString().trim();
+                type = spinner.getSelectedItem().toString();
 
 
                 if (TextUtils.isEmpty(memail)) {
@@ -124,6 +131,7 @@ public class register extends AppCompatActivity {
                             hashMap.put("name", "");
                             hashMap.put("phone", "");
                             hashMap.put("district", "");
+                            hashMap.put("Type",type);
                             hashMap.put("state", "");
                             hashMap.put("pincode", "");
                             hashMap.put("image", "");
@@ -135,7 +143,8 @@ public class register extends AppCompatActivity {
                             reference.child(uid).setValue(hashMap);
 
                             Toast.makeText(register.this, "User Created", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(register.this, MainActivity.class));
+
                         } else {
                             Toast.makeText(register.this, "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE);

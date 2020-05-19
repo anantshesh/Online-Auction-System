@@ -4,11 +4,13 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +23,7 @@ import com.example.apnabazaar.adapters.BiddingAdapter;
 import com.example.apnabazaar.models.Bid;
 import com.example.apnabazaar.models.Bids;
 import com.example.apnabazaar.models.Post;
+import com.example.apnabazaar.models.Ratings;
 import com.example.apnabazaar.models.Won;
 import com.example.apnabazaar.myfolder.MainActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -70,9 +73,10 @@ public class BiddingFuture extends AppCompatActivity {
     String myUid, postId, myEmail, myName, minAmt ,myPhone, myDp;
     String hisName, bidamount,  hisUid, hisEmail, pduration, startdatetime, hisdp,stitle,desc, amt, location,squantity,pimage;
 
+    TextView  ratingText, totalCustomers ,count1;
+    RatingBar ratingBar;
 
-
-
+    private Boolean isImageFitToScreen = false;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     FirebaseDatabase firebaseDatabase;
@@ -108,6 +112,10 @@ public class BiddingFuture extends AppCompatActivity {
         mins = findViewById(R.id.mins_bidding_screen);
         sec  = findViewById(R.id.sec_bidding_screen);
         postImage = findViewById(R.id.pImageIv1);
+
+        ratingBar = findViewById(R.id.sellerRating);
+        ratingText = findViewById(R.id.ratingText);
+        totalCustomers = findViewById(R.id.total);
         //recyclerView = findViewById(R.id.bidderRecycler);
        // myListView = findViewById(R.id.listview_bidding_screen);
 
@@ -189,6 +197,52 @@ public class BiddingFuture extends AppCompatActivity {
             }
         });
 
+        DatabaseReference ratingRef = FirebaseDatabase.getInstance().getReference("Ratings");
+        ratingRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int ratingSum = 0;
+                float ratingtotal = 0;
+                float ratingAvg = 0;
+                for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                    Ratings ratings = ds.getValue(Ratings.class);
+                    if (ratings.getpUid().equals(hisUid)) {
+                        ratingSum = ratingSum + Integer.valueOf(ratings.getRating());
+                        ratingtotal++;
+                    }
+                }
+                if (ratingtotal != 0){
+                    ratingAvg = ratingSum/ratingtotal;
+                    ratingBar.setRating(ratingAvg);
+                    ratingText.setText(Float.toString(ratingAvg));
+                    totalCustomers.setText(Float.toString(ratingtotal));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        postImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isImageFitToScreen){
+                    isImageFitToScreen = false;
+                    postImage.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    postImage.setAdjustViewBounds(true);
+                    isImageFitToScreen = false;
+                }
+                else {
+                    isImageFitToScreen=true;
+                    postImage.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                    postImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                    isImageFitToScreen = true;
+                }
+
+            }
+        });
 
     }
 

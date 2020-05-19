@@ -3,6 +3,7 @@ package com.example.apnabazaar.myfolder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +21,6 @@ import androidx.viewpager.widget.PagerAdapter;
 import com.example.apnabazaar.Profile;
 import com.example.apnabazaar.R;
 import com.example.apnabazaar.about_us;
-import com.example.apnabazaar.contact_us;
 import com.example.apnabazaar.feedback;
 import com.example.apnabazaar.layout.FutureAuctions;
 import com.example.apnabazaar.layout.LiveAuctions;
@@ -28,9 +28,6 @@ import com.example.apnabazaar.layout.YourProduct;
 import com.example.apnabazaar.layout.order_history;
 import com.example.apnabazaar.layout.sellproduct;
 import com.example.apnabazaar.models.Bid;
-import com.example.apnabazaar.models.Post;
-import com.example.apnabazaar.models.Won;
-import com.example.apnabazaar.notification.Token;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,7 +38,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
@@ -55,14 +51,10 @@ import static com.google.firebase.storage.FirebaseStorage.getInstance;
 
 public class MainActivity extends AppCompatActivity {
 
-    //private SectionsPagerAdapter mSectionsPagerAdapter;
 
-   // private ViewPager mViewPager;
-   // private TabLayout tabLayout;
     private FirebaseAuth firebaseAuth;
     public String type;
-    //private ActionBar actionBar;
-    //private String[] tabs = {"My Ads", "Auctioned Ads", "Post Ads"};
+
     private DatabaseReference postRef, bidRef, wonRef;
     Calendar calendar;
     private SimpleDateFormat mdformat;
@@ -72,36 +64,26 @@ public class MainActivity extends AppCompatActivity {
     private int listenerCounter = 0;
 
     View navView;
-   // String myUid, postId, myEmail, myName, minAmt , myDp;
-    //String hisName, bidId,  hisUid, hisEmail, pduration, startdatetime;
 
     ImageView m_dp, dp;
-    TextView u_name, name, email;
-    String myUid, myEmail;
-
-
-
-
+    TextView u_name, name, email, Utype;
+    String myUid, myEmail, userTpye;
 
     private DrawerLayout drawerLayout;
-    //ActionBar actionBar;
+
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView ;
     BottomNavigationView bottomNavigationView;
 
 
 
-
-    /*RecyclerView recyclerView;
-    List<Post> postList;
-    AdapterPost adapterPost;
-*/
     DatabaseReference databaseReference;
     FirebaseDatabase firebaseDatabase;
     StorageReference storageReference;
 
 
-    String myName,myDp;
+    String myName,myDp, mType;
+
 
 
 
@@ -110,14 +92,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
-        //mViewPager = (ViewPager) findViewById(R.id.containe);
-//        mViewPager.setAdapter(mSectionsPagerAdapter);
-        //mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-        //onTabSelectedListener(mViewPager);
-        //tabLayout = (TabLayout) findViewById(R.id.tabs);
-        //tabLayout.setupWithViewPager(mViewPager);
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         firebaseAuth = FirebaseAuth.getInstance();
         mdformat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
         calendar = Calendar.getInstance();
@@ -126,53 +101,12 @@ public class MainActivity extends AppCompatActivity {
         bidRef = FirebaseDatabase.getInstance().getReference("Posts").child("Bidders");
         Intent i = getIntent();
         type = i.getStringExtra("type");
+        Utype = findViewById(R.id.type);
 
 
         checkcurrentUser();
 
-
-
-
-       /* Query query = databaseReference.orderByChild("pId").equalTo(postId);
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot ds : dataSnapshot.getChildren() ){
-                    hisUid = "" +ds.child("uid").getValue();
-                    hisEmail = "" +ds.child("uEmail").getValue();
-                    hisName = ""+ ds.child("uName").getValue();
-                    String dp = ""+ ds.child("uDp").getValue();
-                    String title = ""+ ds.child("pTitle").getValue();
-                    String desc = ""+ ds.child("pDesc").getValue();
-                    String amt = ""+ ds.child("pMinPrice").getValue();
-                    String location = ""+ ds.child("pCity").getValue();
-                    String quantity = ""+ ds.child("pQuantity").getValue();
-                    String pimage = ""+ ds.child("pImage").getValue();
-                    pduration = "" + ds.child("pduration").getValue();
-                    startdatetime = "" + ds.child("aDateTime").getValue();
-
-
-
-
-
-
-
-
-
-
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
-
-
-        postRef.addValueEventListener(new ValueEventListener() {
+        /*postRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (onDestroyFlag == false && listenerCounter == 0) {
@@ -200,31 +134,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+*/
 
-        /*
-        wonRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                if (onDestroyFlag == false && listenerCounter == 0) {
-                    if (pId.size() > 0) {
-                        for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                            Won checkWon = snapshot.getValue(Won.class);
-                            for (int i = 0; i < pId.size(); i++) {
-                                if (pId.get(i).equals(checkWon.getpId())) {
-                                    pId.remove(i);
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });*/
         bidRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -238,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                                     bids.add(checkBid);
                                 }
                             }
-                            maxBid(bids);
+
                             bids.clear();
                         }
                     }
@@ -250,24 +161,6 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-
-/*        mViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });*/
-
-
 
        // actionBar = getSupportActionBar();
         m_dp = findViewById(R.id.m_dp);
@@ -295,6 +188,15 @@ public class MainActivity extends AppCompatActivity {
                 for(DataSnapshot ds: dataSnapshot.getChildren()){
                     myName = "" + ds.child("name").getValue();
                     myDp = "" + ds.child("image").getValue();
+                    userTpye = "" + ds.child("Type").getValue();
+                    Utype.setText(userTpye);
+
+
+                    if (userTpye.equals("Buyer")){
+                        hideItem();
+
+
+                    }
                 }
             }
 
@@ -303,6 +205,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+
+
+
         navigationView = findViewById(R.id.navigation_view);
         navView = navigationView.inflateHeaderView(R.layout.navigation_header);
         navView = navigationView.getHeaderView(0);
@@ -329,22 +236,6 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-
-       /*recyclerView = findViewById(R.id.postRecyclerview);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-
- layoutManager.setStackFromEnd(true);
-  layoutManager.setReverseLayout(true);
-
-      recyclerView.setLayoutManager(layoutManager);
-
-    FirebaseDatabase mFirebaseDatabase = FirebaseDatabase.getInstance();
-
-   DatabaseReference ref = mFirebaseDatabase.getReference("Posts");
-   postList = new ArrayList<>();
-
-      loadPosts();*/
-
         BottomNavigationView navigationView1 = findViewById(R.id.bottom_navagation);
         navigationView1.setOnNavigationItemSelectedListener(selectedListener);
 
@@ -354,13 +245,17 @@ public class MainActivity extends AppCompatActivity {
         ft1.replace(R.id.container, fragment1, "");
         ft1.commit();
 
-        upDateToken(FirebaseInstanceId.getInstance().getToken());
+        //upDateToken(FirebaseInstanceId.getInstance().getToken());
 
     }
 
-    private void loadUser() {
-
+    private void hideItem() {
+        navigationView = findViewById(R.id.navigation_view);
+        Menu nav_Menu = navigationView.getMenu();
+        nav_Menu.findItem(R.id.nav_product).setVisible(false);
+        nav_Menu.findItem(R.id.your_product).setVisible(false);
     }
+
 
     private void checkcurrentUser() {
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -381,22 +276,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void maxBid(List<Bid> bids) {
-        ++listenerCounter;
-        if (bids.size() > 0) {
-            Bid max = bids.get(0);
-            for (int i = 0; i < bids.size(); i++) {
-                if (Long.parseLong(max.getBids()) < Long.parseLong(bids.get(i).getBids())) {
-                    max = bids.get(i);
-                }
-            }
-            DatabaseReference wonAuctionsRef = FirebaseDatabase.getInstance().getReference().child("Won");
-            Won wonAuction = new Won(max.getuName(), max.getpId());
-            wonAuctionsRef.push().setValue(wonAuction);
-            System.out.println("checkff setValue(Won) live screen");
-        }
-
-    }
 
 
     @Override
@@ -405,12 +284,12 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
     }
 
-    public void upDateToken(String token){
+   /* public void upDateToken(String token){
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Tokens");
         Token mToken = new Token(token);
         ref.child(myUid).setValue(mToken);
     }
-
+*/
     private BottomNavigationView.OnNavigationItemSelectedListener selectedListener =
             new BottomNavigationView.OnNavigationItemSelectedListener() {
                 @Override
@@ -516,10 +395,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
-
+*/
 
     //search post handler method
-
+/*
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -611,9 +490,6 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
-            case R.id.contact:
-                startActivity(new Intent(getApplicationContext(), contact_us.class));
-                break;
 
             case R.id.about_us:
                 startActivity(new Intent(getApplicationContext(), about_us.class));
@@ -624,8 +500,8 @@ public class MainActivity extends AppCompatActivity {
 
                 break;
 
-            case R.id.change_language:
-                break;
+            //case R.id.change_language:
+              //  break;
 
             case R.id.delete_account:
                 startActivity(new Intent(getApplicationContext(), delete_user.class));

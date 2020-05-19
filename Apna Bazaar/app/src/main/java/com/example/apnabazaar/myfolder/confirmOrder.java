@@ -1,5 +1,6 @@
 package com.example.apnabazaar.myfolder;
 
+import android.app.Notification;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
@@ -19,6 +20,8 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.example.apnabazaar.R;
 import com.example.apnabazaar.models.Bids;
@@ -36,8 +39,12 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+
+import static com.example.apnabazaar.App.CHANNEL_1_ID;
 
 public class confirmOrder extends AppCompatActivity {
 
@@ -63,8 +70,17 @@ public class confirmOrder extends AppCompatActivity {
     DatabaseReference postRef;
     private RatingBar ratingBar;
 
+    private SimpleDateFormat mdformat;
+    Date currentDate;
+
     private LinearLayout rateNowContainer, layoutRating;
+
+
+
     final int UPI_PAYMENT = 0;
+
+
+    private NotificationManagerCompat notificationManagerCompat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,9 +90,12 @@ public class confirmOrder extends AppCompatActivity {
         Intent intent = getIntent();
         postId = intent.getStringExtra("order");
 
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         firebaseDatabase = FirebaseDatabase.getInstance();
+
+
 
 
           setpost = (Post) getIntent().getSerializableExtra("send post");
@@ -105,6 +124,8 @@ public class confirmOrder extends AppCompatActivity {
         amt1 = findViewById(R.id.amt);
         upi2 = findViewById(R.id.upiD);
 
+        mdformat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
+
 
         ratingBar = findViewById(R.id.ratingBar);
 
@@ -116,6 +137,11 @@ public class confirmOrder extends AppCompatActivity {
         Query query = postRef.orderByChild("pId").equalTo(postId);
 
         orderDetail.setVisibility(View.GONE);
+
+
+
+
+
         //Post details
 
         query.addValueEventListener(new ValueEventListener() {
@@ -160,6 +186,7 @@ public class confirmOrder extends AppCompatActivity {
 
 
 
+
                     try{
                         Picasso.get().load(hisdp).into(sdp);
                     }
@@ -181,7 +208,6 @@ public class confirmOrder extends AppCompatActivity {
 
             }
         });
-
 
 
 
@@ -222,6 +248,8 @@ public class confirmOrder extends AppCompatActivity {
                     if (postId.equals(checkWon.getBpId())) {
                         winnerUsername = checkWon.getBuName() + " Rs. " + checkWon.getBids();
                         if (checkWon.getBuid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                            //sendNotification();
+
                             linearLayout.setVisibility(View.VISIBLE);
                            // orderDetail.setVisibility(View.VISIBLE);
                             payment.setVisibility(View.VISIBLE);
@@ -271,6 +299,18 @@ public class confirmOrder extends AppCompatActivity {
             });
         }*/
 
+    }
+
+    private void sendNotification() {
+        notificationManagerCompat = NotificationManagerCompat.from(this);
+
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("Apna Bazaar")
+                .setContentText("Congratulations, You have won an auction Product that you bid on!")
+                .build();
+
+        notificationManagerCompat.notify(1, notification);
     }
 
 

@@ -88,6 +88,7 @@ public class sellproduct extends AppCompatActivity {
     Date currentdate = null;
     public Date enteredStartDate = null;
     public Date enteredEndDate = null;
+    private int count = 0;
 
 
 
@@ -372,6 +373,8 @@ public class sellproduct extends AppCompatActivity {
                 final String m_quantity = quantity.getText().toString().trim();
                 final String upiid = upi.getText().toString().trim();
                 final String m_description = description.getText().toString().trim();
+                final long Count = 0;
+
 
                 //String duration_s = duration.getSelectedItem().toString();
                 //String m_date = datePicked.getText().toString().trim();
@@ -476,7 +479,7 @@ public class sellproduct extends AppCompatActivity {
 
                     // pass the m_quantity parameter in the next line , m_date, m_time
                     //, m_date, m_time,m_date_end, m_time_end
-                    uploadData(m_title, m_description, m_quantity, m_price,upiid ,String.valueOf(enteredStartDate), String.valueOf(enteredEndDate),mCategory, mplace,  String.valueOf(image_rui));
+                    uploadData(m_title, m_description, m_quantity, m_price,upiid, Count ,String.valueOf(enteredStartDate), String.valueOf(enteredEndDate),mCategory, mplace,  String.valueOf(image_rui));
               }
 
 
@@ -497,7 +500,7 @@ public class sellproduct extends AppCompatActivity {
 
     //, final String m_date, final String m_time, final String m_date_end, final String m_time_end
 
-   private void uploadData(final String m_title, final String m_description, final String m_quantity, final String m_price,final String upiid, final String enteredStartDate, final String enteredEndDate,final String mCategory, final String mplace, final String uri) {
+   private void uploadData(final String m_title, final String m_description, final String m_quantity, final String m_price,final String upiid,final long Count, final String enteredStartDate, final String enteredEndDate,final String mCategory, final String mplace, final String uri) {
         pd.setMessage("Posting Your Product...");
         pd.show();
 
@@ -525,6 +528,7 @@ public class sellproduct extends AppCompatActivity {
                                 hashMap.put("uEmail", email);
                                 hashMap.put("uDp", dp );
                                 hashMap.put("pId", timeStamp );
+                                hashMap.put("Count", String.valueOf(Count));
                                 hashMap.put("pTitle", m_title );
                                 hashMap.put("aDateTime",(enteredStartDate));
                                 hashMap.put("pQuantity", m_quantity );

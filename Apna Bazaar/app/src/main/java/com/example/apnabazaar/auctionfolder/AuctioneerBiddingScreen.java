@@ -17,7 +17,6 @@ import com.example.apnabazaar.R;
 import com.example.apnabazaar.adapters.AdapterBid;
 import com.example.apnabazaar.adapters.AdapterBid1;
 import com.example.apnabazaar.adapters.BiddingAdapter;
-import com.example.apnabazaar.layout.YourProduct;
 import com.example.apnabazaar.models.Bid;
 import com.example.apnabazaar.models.Bids;
 import com.example.apnabazaar.models.Post;
@@ -314,10 +313,5 @@ public class AuctioneerBiddingScreen extends AppCompatActivity {
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent i = new Intent(this, YourProduct.class);
-        startActivity(i);
-    }
+
 }

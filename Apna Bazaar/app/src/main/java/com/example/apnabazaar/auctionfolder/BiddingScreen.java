@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -72,11 +73,12 @@ public class BiddingScreen extends AppCompatActivity {
     private AdapterPost adapterPost;
 
     private AdapterBid adapterBid1;
+    boolean ViewCount = false;
 
 
 
-    RecyclerView recyclerView1, recyclerView;
-    private TextView title, description, hours, mins, sec, initialBid, quantity, place,uname, ratingText, totalCustomers;
+    RecyclerView recyclerView1, recyclerView, mostViewRecycler;
+    private TextView title, description, hours, mins, sec, initialBid, quantity, place,uname, ratingText, totalCustomers,count1;
     private ImageView postImage, udp;
 
     private java.text.SimpleDateFormat mdformat;
@@ -97,8 +99,8 @@ public class BiddingScreen extends AppCompatActivity {
     private Button bidButton;
     private EditText bidEt;
     ProgressDialog pd;
-    String myUid, postId, myEmail, myName, minAmt ,myPhone, myDp;
-    String hisName, bidamount,  hisUid, hisEmail, pduration, startdatetime, hisdp,stitle,desc, amt, location,squantity,pimage, pcatogry;
+    String myUid, postId, postId1, myEmail, myName, minAmt ,myPhone, myDp;
+    String hisName, bidamount,  hisUid, hisEmail, pduration, startdatetime, hisdp,stitle,desc, amt, location,squantity,pimage, pcatogry, pcount;
 
     Date currentDate = null;
     //private SimpleDateFormat mdformat;
@@ -118,11 +120,13 @@ public class BiddingScreen extends AppCompatActivity {
     private boolean onDestroyFlag = false;
     RatingBar ratingBar;
     String BidId;
+    long count;
 
     //Horizontal Variables
-    private TextView layoutTitle;
+    private TextView layoutTitle, layoutTitle1;
     private Button viewAll;
     private RecyclerView similarRecycler;
+    private Boolean isImageFitToScreen = false;
 
     List<Bids> checkWinnerBids = new ArrayList<Bids>();
     private String winnerUsername="No Winner";
@@ -146,6 +150,7 @@ public class BiddingScreen extends AppCompatActivity {
         sec  = findViewById(R.id.sec_bidding_screen);
         initialBid = findViewById(R.id.pPriceTv);
         postImage = findViewById(R.id.pImageIv);
+        count1 = findViewById(R.id.count);
 
         ratingBar = findViewById(R.id.sellerRating);
         ratingText = findViewById(R.id.ratingText);
@@ -155,6 +160,7 @@ public class BiddingScreen extends AppCompatActivity {
         bidEt = findViewById(R.id.bidEt);
 
         pd = new ProgressDialog(this);
+
 
 
 
@@ -168,11 +174,10 @@ public class BiddingScreen extends AppCompatActivity {
         postRef = FirebaseDatabase.getInstance().getReference("Posts");
         Query query = postRef.orderByChild("pId").equalTo(postId);
 
-        //Post details
-
         query.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
                 for(DataSnapshot ds : dataSnapshot.getChildren() ){
                     hisUid = "" +ds.child("uid").getValue();
                     hisEmail = "" +ds.child("uEmail").getValue();
@@ -187,6 +192,7 @@ public class BiddingScreen extends AppCompatActivity {
                     pduration = "" + ds.child("pduration").getValue();
                     startdatetime = "" + ds.child("aDateTime").getValue();
                     pcatogry = "" + ds.child("pCatogry").getValue();
+                    pcount = "" +ds.child("Count").getValue();
 
                     uname.setText(hisName);
                     title.setText(stitle);
@@ -194,6 +200,7 @@ public class BiddingScreen extends AppCompatActivity {
                     initialBid.setText(amt);
                     place.setText(location);
                     quantity.setText(squantity);
+                    count1.setText(pcount);
 
 
                     try {
@@ -221,6 +228,11 @@ public class BiddingScreen extends AppCompatActivity {
                         Picasso.get().load(R.drawable.ic_add_image).into(postImage);
                     }
                 }
+
+
+
+
+
             }
 
             @Override
@@ -228,6 +240,10 @@ public class BiddingScreen extends AppCompatActivity {
 
             }
         });
+
+        //updateViewCount();
+
+
 
         DatabaseReference ratingRef = FirebaseDatabase.getInstance().getReference("Ratings");
         ratingRef.addValueEventListener(new ValueEventListener() {
@@ -256,6 +272,25 @@ public class BiddingScreen extends AppCompatActivity {
 
             }
         });
+
+
+
+        postImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(isImageFitToScreen){
+                    isImageFitToScreen = false;
+                    postImage.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+                    postImage.setAdjustViewBounds(true);
+                }
+                else {
+                    isImageFitToScreen=true;
+                    postImage.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+                    postImage.setScaleType(ImageView.ScaleType.FIT_XY);
+                }
+
+            }
+        });
         //logged in user details
         checkCurrentUser();
         mdformat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
@@ -278,8 +313,57 @@ public class BiddingScreen extends AppCompatActivity {
 
          //Similar product code
          layoutTitle = findViewById(R.id.similarTitle);
-         viewAll = findViewById(R.id.similarViewAll);
          recyclerView1 = findViewById(R.id.similarRecycler);
+
+         layoutTitle1 = findViewById(R.id.MostViewedTitle);
+         mostViewRecycler = findViewById(R.id.mostViewed);
+
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(BiddingScreen.this);
+        layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager1.setStackFromEnd(true);
+        layoutManager1.setReverseLayout(true);
+
+
+        mostViewRecycler.setLayoutManager(layoutManager1);
+        posts.clear();
+        postRef = FirebaseDatabase.getInstance().getReference("Posts");
+        postRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot ds : dataSnapshot.getChildren()){
+                    Post checkPost = ds.getValue(Post.class);
+                    posts.clear();
+                    String views = checkPost.getCount();
+                    int mViews = Integer.parseInt(views);
+                    if (mViews > 5 ) {
+                        Calendar calendar = Calendar.getInstance();
+                        Date enddate = null, startDate = null;
+                        try{
+                            currentDate = mdformat.parse(mdformat.format(calendar.getTime()));
+                            enddate = mdformat.parse(checkPost.getPduration());
+                            startDate = mdformat.parse(checkPost.getaDateTime());
+
+                        }catch (Exception e ){
+                            e.printStackTrace();
+                        }
+                        if (currentDate.compareTo(startDate) >= 0 && currentDate.compareTo(enddate) == -1){
+
+
+                            posts.add(checkPost);
+                            horizontalProductAdapter = new horizontalProductAdapter(BiddingScreen.this, posts);
+                            mostViewRecycler.setAdapter(horizontalProductAdapter);
+                        }
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(BiddingScreen.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -294,6 +378,7 @@ public class BiddingScreen extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
                     Post checkPost = ds.getValue(Post.class);
+                    posts.clear();
                     if (checkPost.getpCatogry().equals(pcatogry)) {
                         Calendar calendar = Calendar.getInstance();
                         Date enddate = null, startDate = null;
@@ -324,6 +409,11 @@ public class BiddingScreen extends AppCompatActivity {
             }
         });
 
+
+    }
+
+
+    private void updateViewCount() {
 
     }
 
@@ -493,37 +583,7 @@ public class BiddingScreen extends AppCompatActivity {
             }
         });
 
-       /* childEventListener = new ChildEventListener() {
-            @Override
-            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-                Bids checkBid = dataSnapshot.getValue(Bids.class);
-                 if (checkBid.getBpId().equals(setPost.getpId())) {
-                bids.add(checkBid);
-                myadapter.notifyDataSetChanged();
-                 }
-            }
 
-            @Override
-            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
-
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        };
-        bidRef.addChildEventListener(childEventListener);*/
 
 
     }
@@ -781,4 +841,24 @@ public class BiddingScreen extends AppCompatActivity {
         finish();
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        ViewCount = true;
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts").child(postId);
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                String views = ""+ dataSnapshot.child("Count").getValue();
+                int newViewVal = Integer.parseInt(views) + 1;
+                ref.child("Count").setValue(String.valueOf(newViewVal));
+                ViewCount = false;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
 }
