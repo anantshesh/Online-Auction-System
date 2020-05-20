@@ -44,7 +44,10 @@ public class FutureAuctions extends Fragment {
     private List<Post> posts = new ArrayList<Post>();
     private List<Bid> bids = new ArrayList<Bid>();
     private List<winner> wins = new ArrayList<winner>();
+
+
     private DatabaseReference postRef;
+
     private ChildEventListener childEventListener;
     private SimpleDateFormat mdformat;
     Date currentDate;
@@ -73,9 +76,12 @@ public class FutureAuctions extends Fragment {
         //here
         //myAdapter = new AdsAdapter(getActivity(), posts, "future");
         recyclerView = view.findViewById(R.id.futureAllPost);
+
         postRef = FirebaseDatabase.getInstance().getReference().child("Posts");
+
         mdformat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
         //myListView.setAdapter(myAdapter);
+
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
@@ -86,6 +92,7 @@ public class FutureAuctions extends Fragment {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
                 Post checkPost = dataSnapshot.getValue(Post.class);
+
                 Calendar calendar = Calendar.getInstance();
                 Date startDate = null, endDate = null;
                 String sdate,edate;

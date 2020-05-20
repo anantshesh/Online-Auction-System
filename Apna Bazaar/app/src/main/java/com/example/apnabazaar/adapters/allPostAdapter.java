@@ -88,7 +88,7 @@ public class allPostAdapter extends RecyclerView.Adapter<allPostAdapter.Holder> 
                     context.startActivity(intent);
 
                 }
-                else if (mType.equals("order")){
+                               else if (mType.equals("order")){
                     Intent intent = new Intent(context, confirmOrder.class);
                     intent.putExtra("order", postID);
                     context.startActivity(intent);

@@ -261,6 +261,7 @@ public class BiddingFuture extends AppCompatActivity {
         long hoursInMilli = minutesInMilli * 60;
         long daysInMilli = hoursInMilli * 24;
         System.out.println("Checkff difference" + diff);
+
         long elapsedDays = diff / daysInMilli;
         diff = diff % daysInMilli;
         System.out.println("Checkff difference=" + diff + " days=" + elapsedDays);

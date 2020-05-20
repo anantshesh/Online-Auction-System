@@ -173,6 +173,7 @@ public class sellproduct extends AppCompatActivity {
         mMins = mins.getSelectedItem().toString();
         mCategory = category.getSelectedItem().toString();
         mplace = place.getSelectedItem().toString();
+
         hours.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -586,6 +587,7 @@ public class sellproduct extends AppCompatActivity {
             hashMap.put("pTitle", m_title );
             hashMap.put("pQuantity", m_quantity);
             hashMap.put("pDesc", m_description );
+            hashMap.put("Count", String.valueOf(Count));
             hashMap.put("pMinPrice", m_price );
             hashMap.put("aDateTime", String.valueOf(enteredStartDate));
             hashMap.put("pCity", mplace );

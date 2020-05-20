@@ -15,6 +15,7 @@ public class Post implements Serializable {
 
     // create or add the pQuantity constructor below
 
+
     public Post(String pId, String pTitle, String pDesc, String pMinPrice, String puphone, String pQuantity, String aDateTime, String pucity, String upiid, String pCity, String pustate, String pupincode, String pCatogry, String pImage, String pTime, String pduration, String uid, String uEmail, String uName, String uDp, String count) {
         this.pId = pId;
         this.pTitle = pTitle;
@@ -36,7 +37,7 @@ public class Post implements Serializable {
         this.uEmail = uEmail;
         this.uName = uName;
         this.uDp = uDp;
-        this.Count = count;
+        Count = count;
     }
 
     public String getpId() {

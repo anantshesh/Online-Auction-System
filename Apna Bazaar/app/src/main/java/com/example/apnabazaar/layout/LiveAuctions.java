@@ -252,7 +252,7 @@ public class LiveAuctions extends Fragment {
                                 if (currentDate.compareTo(postStartDate) >= 0 && currentDate.compareTo(postEndDate)  == -1 ) {
 
                                     if (mCategory.equals("All")) {
-                                         posts.add(checkPost);
+                                        posts.add(checkPost);
 
                                     }
                                     else if(checkPost.getpCatogry().equals(mCategory)){
@@ -322,6 +322,8 @@ public class LiveAuctions extends Fragment {
 
 
         checkTimeOfPosts();
+
+
         /*final CountDownTimer mCountDown = new CountDownTimer(5000, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -461,6 +463,7 @@ public class LiveAuctions extends Fragment {
                // myadapter.notifyDataSetChanged();
             }
         }
+
         Query query = postreference;
         query.addValueEventListener(new ValueEventListener() {
             @Override

@@ -215,6 +215,8 @@ public class confirmOrder extends AppCompatActivity {
 
 
         checkUserStatus();
+
+
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Ratings");
         ref.addValueEventListener(new ValueEventListener() {
             @Override

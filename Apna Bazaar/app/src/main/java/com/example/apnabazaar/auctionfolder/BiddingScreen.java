@@ -100,7 +100,7 @@ public class BiddingScreen extends AppCompatActivity {
     private EditText bidEt;
     ProgressDialog pd;
     String myUid, postId, postId1, myEmail, myName, minAmt ,myPhone, myDp;
-    String hisName, bidamount,  hisUid, hisEmail, pduration, startdatetime, hisdp,stitle,desc, amt, location,squantity,pimage, pcatogry, pcount;
+    String hisName, bidamount,  hisUid, hisEmail, pduration, startdatetime, hisdp,stitle,posttime, desc, amt, location,squantity,pimage, pcatogry, pcount;
 
     Date currentDate = null;
     //private SimpleDateFormat mdformat;
@@ -192,6 +192,7 @@ public class BiddingScreen extends AppCompatActivity {
                     pduration = "" + ds.child("pduration").getValue();
                     startdatetime = "" + ds.child("aDateTime").getValue();
                     pcatogry = "" + ds.child("pCatogry").getValue();
+                    posttime = "" +ds.child("pTime").getValue();
                     pcount = "" +ds.child("Count").getValue();
 
                     uname.setText(hisName);
@@ -334,7 +335,9 @@ public class BiddingScreen extends AppCompatActivity {
                     Post checkPost = ds.getValue(Post.class);
                     posts.clear();
                     String views = checkPost.getCount();
+
                     int mViews = Integer.parseInt(views);
+
                     if (mViews > 5 ) {
                         Calendar calendar = Calendar.getInstance();
                         Date enddate = null, startDate = null;
@@ -505,7 +508,7 @@ public class BiddingScreen extends AppCompatActivity {
         hashMap.put("bhpCity", location);
         hashMap.put("bhpduration", pduration);
         hashMap.put("bhpImage", pimage);
-        //hashMap.put("bhpTime", setPost.getpTime());
+        hashMap.put("bhpTime", posttime);
 
         reference.child(timeStamp).setValue(hashMap)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
@@ -554,6 +557,7 @@ public class BiddingScreen extends AppCompatActivity {
         layoutManager.setStackFromEnd(true);
         layoutManager.setReverseLayout(true);
         recyclerView.setLayoutManager(layoutManager);
+
         bids = new ArrayList<>();
         bidReference = FirebaseDatabase.getInstance().getReference("Bids");
         bidReference.addValueEventListener(new ValueEventListener() {
@@ -612,6 +616,8 @@ public class BiddingScreen extends AppCompatActivity {
             Toast.makeText(this, "Place your Bid!", Toast.LENGTH_SHORT).show();
             return;
         }
+
+
         for (int i = 0; i < bids.size(); i++) {
             if (Long.parseLong(bids.get(i).getBids()) >= Long.parseLong(bidEt.getText().toString())) {
                 bidEt.setText("");
@@ -624,8 +630,11 @@ public class BiddingScreen extends AppCompatActivity {
             Toast.makeText(BiddingScreen.this, "Entered bid is less than or equal to initial bid", Toast.LENGTH_SHORT).show();
             return;
         }
+
+
         else {
             String timeStamp = String.valueOf(System.currentTimeMillis());
+
             DatabaseReference reference = FirebaseDatabase.getInstance().getReference("Bids");
             HashMap<String, Object> hashMap = new HashMap<>();
             hashMap.put("bidId", timeStamp);
