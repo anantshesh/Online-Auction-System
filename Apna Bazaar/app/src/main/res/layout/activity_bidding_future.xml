@@ -562,7 +562,7 @@
 
 
 
-
+            <include layout="@layout/most_viewed" />
 
         </LinearLayout>
     </ScrollView>

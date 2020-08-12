@@ -16,10 +16,12 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.apnabazaar.R;
 import com.example.apnabazaar.adapters.BiddingAdapter;
+import com.example.apnabazaar.adapters.horizontalProductAdapter;
 import com.example.apnabazaar.models.Bid;
 import com.example.apnabazaar.models.Bids;
 import com.example.apnabazaar.models.Post;
@@ -62,6 +64,7 @@ public class BiddingFuture extends AppCompatActivity {
 
     //private AdapterBid adapterBid;
     private List<Bids> bids = new ArrayList<Bids>();
+    private List<Post> posts= new ArrayList<Post>();
 
     private LinearLayout linearLayout;
     private DatabaseReference bidReference;
@@ -89,6 +92,10 @@ public class BiddingFuture extends AppCompatActivity {
     String postID;
     List<Bid> checkWinnerBids = new ArrayList<Bid>();
 
+    private horizontalProductAdapter horizontalProductAdapter;
+    private TextView layoutTitle, layoutTitle1;
+    RecyclerView  mostViewRecycler;
+    Date currentDate = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -196,6 +203,52 @@ public class BiddingFuture extends AppCompatActivity {
 
             }
         });
+
+
+        layoutTitle1 = findViewById(R.id.MostViewedTitle);
+        mostViewRecycler = findViewById(R.id.mostViewed);
+        LinearLayoutManager layoutManager1 = new LinearLayoutManager(BiddingFuture.this);
+        layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
+        layoutManager1.setStackFromEnd(false);
+        layoutManager1.setReverseLayout(false);
+        mostViewRecycler.setLayoutManager(layoutManager1);
+        DatabaseReference postRef1 = FirebaseDatabase.getInstance().getReference("Posts");
+        postRef1.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                posts.clear();
+                for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                    Post check1 = dataSnapshot1.getValue(Post.class);
+
+
+                    if (Integer.valueOf(check1.getCount())>5 ){
+                        Calendar calendar = Calendar.getInstance();
+                        Date enddate = null, startDate = null;
+                        try{
+                            currentDate = mdformat.parse(mdformat.format(calendar.getTime()));
+                            enddate = mdformat.parse(check1.getPduration());
+                            startDate = mdformat.parse(check1.getaDateTime());
+
+                        }catch (Exception e ){
+                            e.printStackTrace();
+                        }
+
+
+                        if (currentDate.compareTo(startDate) >= 0 && currentDate.compareTo(enddate) == -1){
+
+                            // posts.clear();
+                            posts.add(check1);
+                            horizontalProductAdapter = new horizontalProductAdapter(BiddingFuture.this, posts);
+                            mostViewRecycler.setAdapter(horizontalProductAdapter);
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
 
         DatabaseReference ratingRef = FirebaseDatabase.getInstance().getReference("Ratings");
         ratingRef.addValueEventListener(new ValueEventListener() {
@@ -351,7 +404,7 @@ public class BiddingFuture extends AppCompatActivity {
                 if (elapsedMinutes == 0) {
                     if (elapsedHours == 0) {
                         Toast.makeText(BiddingFuture.this, "Bidding time ends", Toast.LENGTH_SHORT).show();
-                        Query query = databaseReference;
+                       /* Query query = databaseReference;
                         query.addValueEventListener(new ValueEventListener() {
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -383,7 +436,7 @@ public class BiddingFuture extends AppCompatActivity {
                             public void onCancelled(DatabaseError databaseError) {
 
                             }
-                        });
+                        });*/
                         Intent i = new Intent(BiddingFuture.this, MainActivity.class);
                         i.putExtra("type", "Bidder");
                         startActivity(i);

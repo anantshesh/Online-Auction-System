@@ -184,10 +184,7 @@ public class AuctioneerBiddingScreen extends AppCompatActivity {
                            winnerUsername = checkWon.getBuName() + " Rs. " + checkWon.getBids();
                        }
                    }
-
-
                    winner.setText(winnerUsername);
-
                }
 
             @Override

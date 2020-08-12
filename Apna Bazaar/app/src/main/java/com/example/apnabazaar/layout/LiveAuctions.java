@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -70,7 +71,7 @@ public class LiveAuctions extends Fragment {
 
 
     //all recycler in one
-    RecyclerView allRecycler;
+    RecyclerView allRecycler, mostViewRecycler;
 
 
     //private List<Post> posts = new ArrayList<Post>();
@@ -78,6 +79,8 @@ public class LiveAuctions extends Fragment {
 
     private Spinner category;
     private String mCategory;
+
+    private TextView layoutTitle, layoutTitle1;
 
     private Spinner city;
     private String mcity;
@@ -438,7 +441,6 @@ public class LiveAuctions extends Fragment {
         layoutManager.setReverseLayout(true);
         allpostrecycler.setLayoutManager(layoutManager);
 
-
         Calendar c = Calendar.getInstance();
         try {
             currentDate = mdformat.parse(mdformat.format(c.getTime()));
@@ -455,12 +457,10 @@ public class LiveAuctions extends Fragment {
             }
             if (currentDate.compareTo(postEndDate) >= 0) {
                 System.out.println("checkff setValue compare to coming");
-                //checkWinner(posts.get(i).getpId());
                 posts.remove(i);
                 allPostAdapter = new allPostAdapter(getActivity(),"all", posts);
                 allpostrecycler.setAdapter(allPostAdapter);
 
-               // myadapter.notifyDataSetChanged();
             }
         }
 
@@ -477,31 +477,21 @@ public class LiveAuctions extends Fragment {
                     try {
                         currentDate = mdformat.parse(mdformat.format(c.getTime()));
                         String dd = checkPost.getaDateTime();
-
                         startDate = mdformat.parse(checkPost.getaDateTime());
                         endDate = mdformat.parse(checkPost.getPduration());
                     } catch (Exception c1) {
                         c1.printStackTrace();
                     }
-                   // Log.e("DATES",startDate.toString()+"\t"+endDate.toString());
-
                     if (currentDate.compareTo(startDate) >= 0 && currentDate.compareTo(endDate) == -1) {
                         posts.add(checkPost);
                         allPostAdapter = new allPostAdapter(getActivity(), "all", posts);
                         allpostrecycler.setAdapter(allPostAdapter);
-                        //myadapter.notifyDataSetChanged();
                     }
-
                 }
-
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
-
-
         });
     }
 

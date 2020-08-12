@@ -52,7 +52,7 @@ public class confirmOrder extends AppCompatActivity {
     private Post setpost;
     ImageView pImage, sdp;
     LinearLayout linearLayout, orderDetail;
-    TextView title, amt1, qunatity, wname, sname, phone, address, email, upi;
+    TextView title, amt11, amt1, qunatity, wname, sname, phone, address, email, upi;
     TextView title1, amount1, name1, upi2;
     Button payment;
     private String winnerUsername="No Winner";
@@ -107,7 +107,7 @@ public class confirmOrder extends AppCompatActivity {
 
         //layoutRating = findViewById(R.id.ratinglayout);
         title = findViewById(R.id.pTitleTv);
-        amt1 = findViewById(R.id.conPriceTv);
+        amt11 = findViewById(R.id.conPriceTv);
         qunatity = findViewById(R.id.pQuantityTv);
         wname = findViewById(R.id.winnername);
         sname = findViewById(R.id.uNameTv);
@@ -117,12 +117,7 @@ public class confirmOrder extends AppCompatActivity {
         email = findViewById(R.id.email);
         upi = findViewById(R.id.upi);
         linearLayout = findViewById(R.id.details);
-        orderDetail = findViewById(R.id.orderdetails);
 
-        name1 = findViewById(R.id.sellerName);
-        title1 = findViewById(R.id.title1);
-        amt1 = findViewById(R.id.amt);
-        upi2 = findViewById(R.id.upiD);
 
         mdformat = new SimpleDateFormat("E MMM dd HH:mm:ss z yyyy");
 
@@ -136,7 +131,7 @@ public class confirmOrder extends AppCompatActivity {
         postRef = FirebaseDatabase.getInstance().getReference("Posts");
         Query query = postRef.orderByChild("pId").equalTo(postId);
 
-        orderDetail.setVisibility(View.GONE);
+       // orderDetail.setVisibility(View.GONE);
 
 
 
@@ -167,7 +162,7 @@ public class confirmOrder extends AppCompatActivity {
 
                     sname.setText(hisName);
                     title.setText(stitle);
-                    amt1.setText(amt);
+                    amt11.setText(amt);
 
 
                     qunatity.setText(squantity);
@@ -178,10 +173,7 @@ public class confirmOrder extends AppCompatActivity {
                     upi.setText(upi1);
 
 
-                    name1.setText(hisName);
-                    title1.setText(stitle);
-                    amt1.setText(amt);
-                    upi2.setText(upi1);
+
 
 
 
@@ -250,25 +242,13 @@ public class confirmOrder extends AppCompatActivity {
                     if (postId.equals(checkWon.getBpId())) {
                         winnerUsername = checkWon.getBuName() + " Rs. " + checkWon.getBids();
                         if (checkWon.getBuid().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                            //sendNotification();
-
                             linearLayout.setVisibility(View.VISIBLE);
-                           // orderDetail.setVisibility(View.VISIBLE);
                             payment.setVisibility(View.VISIBLE);
                             ratingBar.setVisibility(View.VISIBLE);
                             showWinnerRelatedObject();
-                            //layoutRating.setVisibility(View.VISIBLE);
-
-
-
                             payment.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-
-
-
-                                   // doPayment(name1, amt1, title1, upi2);
-
                                     Intent i = new Intent(confirmOrder.this, paymentorder.class);
                                     startActivity(i);
                                 }
@@ -276,8 +256,6 @@ public class confirmOrder extends AppCompatActivity {
                         } else {
                             payment.setVisibility(View.GONE);
                             ratingBar.setVisibility(View.GONE);
-                           // orderDetail.setVisibility(View.GONE);
-                            //layoutRating.setVisibility(View.GONE);
                             linearLayout.setVisibility(View.GONE);
                         }
                     }

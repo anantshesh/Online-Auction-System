@@ -374,7 +374,7 @@ public class sellproduct extends AppCompatActivity {
                 final String m_quantity = quantity.getText().toString().trim();
                 final String upiid = upi.getText().toString().trim();
                 final String m_description = description.getText().toString().trim();
-                final long Count = 0;
+                final int Count = 0;
 
 
                 //String duration_s = duration.getSelectedItem().toString();
@@ -501,7 +501,7 @@ public class sellproduct extends AppCompatActivity {
 
     //, final String m_date, final String m_time, final String m_date_end, final String m_time_end
 
-   private void uploadData(final String m_title, final String m_description, final String m_quantity, final String m_price,final String upiid,final long Count, final String enteredStartDate, final String enteredEndDate,final String mCategory, final String mplace, final String uri) {
+   private void uploadData(final String m_title, final String m_description, final String m_quantity, final String m_price,final String upiid,final int Count, final String enteredStartDate, final String enteredEndDate,final String mCategory, final String mplace, final String uri) {
         pd.setMessage("Posting Your Product...");
         pd.show();
 
@@ -522,6 +522,7 @@ public class sellproduct extends AppCompatActivity {
 
                             String downloadUri = uriTask.getResult().toString();
 
+
                             if(uriTask.isSuccessful()){
                                 HashMap<Object, String> hashMap = new HashMap<>();
                                 hashMap.put("uid", uid);
@@ -529,7 +530,6 @@ public class sellproduct extends AppCompatActivity {
                                 hashMap.put("uEmail", email);
                                 hashMap.put("uDp", dp );
                                 hashMap.put("pId", timeStamp );
-                                hashMap.put("Count", String.valueOf(Count));
                                 hashMap.put("pTitle", m_title );
                                 hashMap.put("aDateTime",(enteredStartDate));
                                 hashMap.put("pQuantity", m_quantity );
@@ -545,6 +545,7 @@ public class sellproduct extends AppCompatActivity {
                                 hashMap.put("pucity", city);
                                 hashMap.put("pustate", state);
                                 hashMap.put("pupincode", pincode);
+                                hashMap.put("Count", String.valueOf(Count));
 
 
                                 DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Posts");

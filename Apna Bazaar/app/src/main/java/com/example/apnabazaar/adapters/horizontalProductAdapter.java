@@ -48,7 +48,7 @@ public class horizontalProductAdapter extends RecyclerView.Adapter<horizontalPro
         final String pPlace = posts.get(position).getpCity();
         final String pImage = posts.get(position).getpImage();
 
-        holder.setIsRecyclable(false);
+        //holder.setIsRecyclable(false);
         holder.title.setText(pTitle);
         holder.amt.setText(pMinPrice);
         holder.place.setText(pPlace);

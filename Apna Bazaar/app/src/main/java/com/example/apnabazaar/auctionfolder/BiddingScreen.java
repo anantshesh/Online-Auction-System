@@ -29,6 +29,8 @@ import com.example.apnabazaar.R;
 import com.example.apnabazaar.adapters.AdapterBid;
 import com.example.apnabazaar.adapters.AdapterPost;
 import com.example.apnabazaar.adapters.BiddingAdapter;
+import com.example.apnabazaar.adapters.allPostAdapter;
+import com.example.apnabazaar.adapters.citySearchPostAdapter;
 import com.example.apnabazaar.adapters.horizontalProductAdapter;
 import com.example.apnabazaar.models.Bids;
 import com.example.apnabazaar.models.Post;
@@ -68,7 +70,9 @@ public class BiddingScreen extends AppCompatActivity {
    // private Bid bidPost;
     //private bidhistoryModel history;
 
-    private horizontalProductAdapter horizontalProductAdapter;
+    private horizontalProductAdapter horizontalProductAdapter, horizontalProductAdapter1;
+    private allPostAdapter allPostAdapter;
+    private citySearchPostAdapter citySearchPostAdapter;
     private List<Post> posts= new ArrayList<Post>();
     private AdapterPost adapterPost;
 
@@ -78,7 +82,7 @@ public class BiddingScreen extends AppCompatActivity {
 
 
     RecyclerView recyclerView1, recyclerView, mostViewRecycler;
-    private TextView title, description, hours, mins, sec, initialBid, quantity, place,uname, ratingText, totalCustomers,count1;
+    private TextView title, description, hours, mins, sec, initialBid, quantity, place,uname, ratingText, totalCustomers,count1, category;
     private ImageView postImage, udp;
 
     private java.text.SimpleDateFormat mdformat;
@@ -93,7 +97,7 @@ public class BiddingScreen extends AppCompatActivity {
     //private AdapterBid adapterBid;
     private List<Bids> bids = new ArrayList<Bids>();
 
-    private DatabaseReference bidReference, bidRef, postRef;
+    private DatabaseReference bidReference, bidRef, postRef, postRef1;
     private ChildEventListener childEventListener;
 
     private Button bidButton;
@@ -151,6 +155,7 @@ public class BiddingScreen extends AppCompatActivity {
         initialBid = findViewById(R.id.pPriceTv);
         postImage = findViewById(R.id.pImageIv);
         count1 = findViewById(R.id.count);
+        category = findViewById(R.id.category);
 
         ratingBar = findViewById(R.id.sellerRating);
         ratingText = findViewById(R.id.ratingText);
@@ -202,6 +207,7 @@ public class BiddingScreen extends AppCompatActivity {
                     place.setText(location);
                     quantity.setText(squantity);
                     count1.setText(pcount);
+                    category.setText(pcatogry);
 
 
                     try {
@@ -241,6 +247,9 @@ public class BiddingScreen extends AppCompatActivity {
 
             }
         });
+
+
+
 
         //updateViewCount();
 
@@ -312,61 +321,55 @@ public class BiddingScreen extends AppCompatActivity {
 
          loadBidders();
 
-         //Similar product code
-         layoutTitle = findViewById(R.id.similarTitle);
-         recyclerView1 = findViewById(R.id.similarRecycler);
 
-         layoutTitle1 = findViewById(R.id.MostViewedTitle);
-         mostViewRecycler = findViewById(R.id.mostViewed);
 
+       /* layoutTitle1 = findViewById(R.id.MostViewedTitle);
+        mostViewRecycler = findViewById(R.id.mostViewed);
         LinearLayoutManager layoutManager1 = new LinearLayoutManager(BiddingScreen.this);
         layoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
-        layoutManager1.setStackFromEnd(true);
-        layoutManager1.setReverseLayout(true);
-
-
+        layoutManager1.setStackFromEnd(false);
+        layoutManager1.setReverseLayout(false);
         mostViewRecycler.setLayoutManager(layoutManager1);
-        posts.clear();
-        postRef = FirebaseDatabase.getInstance().getReference("Posts");
-        postRef.addValueEventListener(new ValueEventListener() {
+        DatabaseReference postRef1 = FirebaseDatabase.getInstance().getReference("Posts");
+        postRef1.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    Post checkPost = ds.getValue(Post.class);
-                    posts.clear();
-                    String views = checkPost.getCount();
-
-                    int mViews = Integer.parseInt(views);
-
-                    if (mViews > 5 ) {
-                        Calendar calendar = Calendar.getInstance();
-                        Date enddate = null, startDate = null;
-                        try{
-                            currentDate = mdformat.parse(mdformat.format(calendar.getTime()));
-                            enddate = mdformat.parse(checkPost.getPduration());
-                            startDate = mdformat.parse(checkPost.getaDateTime());
-
-                        }catch (Exception e ){
-                            e.printStackTrace();
-                        }
-                        if (currentDate.compareTo(startDate) >= 0 && currentDate.compareTo(enddate) == -1){
+              posts.clear();
+              for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
+                  Post check1 = dataSnapshot1.getValue(Post.class);
 
 
-                            posts.add(checkPost);
-                            horizontalProductAdapter = new horizontalProductAdapter(BiddingScreen.this, posts);
-                            mostViewRecycler.setAdapter(horizontalProductAdapter);
-                        }
+                  if (Integer.valueOf(check1.getCount())>5 ){
+                      Calendar calendar = Calendar.getInstance();
+                      Date enddate = null, startDate = null;
+                      try{
+                          currentDate = mdformat.parse(mdformat.format(calendar.getTime()));
+                          enddate = mdformat.parse(check1.getPduration());
+                          startDate = mdformat.parse(check1.getaDateTime());
 
-                    }
+                      }catch (Exception e ){
+                          e.printStackTrace();
+                      }
 
-                }
+
+                      if (currentDate.compareTo(startDate) >= 0 && currentDate.compareTo(enddate) == -1){
+
+                          // posts.clear();
+                          posts.add(check1);
+                          horizontalProductAdapter1 = new horizontalProductAdapter(BiddingScreen.this, posts);
+                          mostViewRecycler.setAdapter(horizontalProductAdapter1);
+                      }
+                  }
+              }
             }
-
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
-
             }
-        });
+        });*/
+
+         //Similar product code
+        layoutTitle = findViewById(R.id.similarTitle);
+        recyclerView1 = findViewById(R.id.similarRecycler);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(BiddingScreen.this);
         layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
@@ -374,29 +377,32 @@ public class BiddingScreen extends AppCompatActivity {
         layoutManager.setReverseLayout(true);
 
         recyclerView1.setLayoutManager(layoutManager);
-        posts.clear();
         postRef = FirebaseDatabase.getInstance().getReference("Posts");
+        //posts.clear();
         postRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                posts.clear();
                 for (DataSnapshot ds : dataSnapshot.getChildren()){
-                    Post checkPost = ds.getValue(Post.class);
-                    posts.clear();
-                    if (checkPost.getpCatogry().equals(pcatogry)) {
+                    Post check = ds.getValue(Post.class);
+
+                    if (check.getpCatogry().equals(pcatogry)) {
                         Calendar calendar = Calendar.getInstance();
                         Date enddate = null, startDate = null;
                         try{
                             currentDate = mdformat.parse(mdformat.format(calendar.getTime()));
-                            enddate = mdformat.parse(checkPost.getPduration());
-                            startDate = mdformat.parse(checkPost.getaDateTime());
+                            enddate = mdformat.parse(check.getPduration());
+                            startDate = mdformat.parse(check.getaDateTime());
 
                         }catch (Exception e ){
                             e.printStackTrace();
                         }
+
+
                         if (currentDate.compareTo(startDate) >= 0 && currentDate.compareTo(enddate) == -1){
 
-
-                            posts.add(checkPost);
+                           // posts.clear();
+                            posts.add(check);
                             horizontalProductAdapter = new horizontalProductAdapter(BiddingScreen.this, posts);
                             recyclerView1.setAdapter(horizontalProductAdapter);
                         }

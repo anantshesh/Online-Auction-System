@@ -265,6 +265,12 @@
 
                 android:textStyle="bold" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/category"
+                android:visibility="gone"/>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
@@ -590,8 +596,8 @@
 
             <include layout="@layout/horizontal_scroll_layout" />
 
-            <include layout="@layout/most_viewed" />
-
+          <!--  <include layout="@layout/most_viewed" />
+-->
 
         </LinearLayout>
     </ScrollView>

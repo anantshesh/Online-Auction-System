@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@drawable/login_design"
+    android:background="@drawable/bg_gradient"
     tools:context=".myfolder.register">
 
     <TextView

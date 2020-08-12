@@ -116,7 +116,9 @@
         </ListView>
 -->
 
+
        <include layout="@layout/all_products"/>
+
 
 
     </LinearLayout>
