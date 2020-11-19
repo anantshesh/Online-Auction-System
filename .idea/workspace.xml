@@ -1,28 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="NONE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="22d89b54-06ab-4091-a657-2b4632b51cf8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/drawable/bg_gradient.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Android Projects.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Android Projects.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/adapters/citySearchPostAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/adapters/citySearchPostAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/adapters/horizontalProductAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/adapters/horizontalProductAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/auctionfolder/BiddingFuture.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/auctionfolder/BiddingFuture.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/auctionfolder/BiddingScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/auctionfolder/BiddingScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/layout/LiveAuctions.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/layout/LiveAuctions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/layout/sellproduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/layout/sellproduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/myfolder/confirmOrder.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/myfolder/confirmOrder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/myfolder/login.java" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/java/com/example/apnabazaar/myfolder/login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_bidding_future.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_bidding_future.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_bidding_screen.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_bidding_screen.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_confirm_order.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_confirm_order.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_register.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/activity_register.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/fragment_live_auctions2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/fragment_live_auctions2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/most_viewed.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Apna Bazaar/app/src/main/res/layout/most_viewed.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,43 +20,20 @@
     <option name="width" value="980" />
     <option name="height" value="1090" />
   </component>
-  <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="AndroidView" />
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Android Projects" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Android Projects" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-    </panes>
+  <component name="ProjectId" id="1jSs1St1yBc91t8ZAhDO7ufhJ53" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="android.sdk.path" value="$USER_HOME$/AppData/Local/Android/Sdk" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Apna Bazaar" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -87,44 +48,10 @@
     </task>
     <servers />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1096" extended-state="6" />
-    <layout>
-      <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.3347548" />
-      <window_info id="Structure" order="2" side_tool="true" />
-      <window_info id="Image Layers" order="3" />
-      <window_info id="Designer" order="4" />
-      <window_info id="Resources Explorer" order="5" />
-      <window_info id="Capture Tool" order="6" />
-      <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info id="Build Variants" order="8" side_tool="true" />
-      <window_info anchor="bottom" id="Version Control" order="0" weight="0.3297587" />
-      <window_info anchor="bottom" id="TODO" order="1" />
-      <window_info anchor="bottom" id="Terminal" order="2" />
-      <window_info anchor="bottom" id="Event Log" order="3" side_tool="true" />
-      <window_info anchor="bottom" id="Logcat" order="4" />
-      <window_info anchor="bottom" id="Android Profiler" order="5" show_stripe_button="false" />
-      <window_info anchor="right" id="Capture Analysis" order="0" />
-      <window_info anchor="right" id="Theme Preview" order="1" />
-      <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info anchor="right" id="Device File Explorer" order="3" side_tool="true" />
-    </layout>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="WindowStateProjectService">
+    <state x="760" y="114" key="#Project_Structure" timestamp="1603809267754">
+      <screen x="0" y="0" width="2560" height="1080" />
+    </state>
+    <state x="760" y="114" key="#Project_Structure/-1920.0.1920.1080/0.0.2560.1080@0.0.2560.1080" timestamp="1603809267754" />
   </component>
 </project>

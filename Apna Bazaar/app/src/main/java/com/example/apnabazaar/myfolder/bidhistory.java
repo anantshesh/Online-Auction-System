@@ -1,16 +1,15 @@
 package com.example.apnabazaar.myfolder;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.os.Bundle;
-
 import com.example.apnabazaar.R;
 import com.example.apnabazaar.adapters.bidhistoryAdapter;
-import com.example.apnabazaar.auctionfolder.BiddingScreen;
 import com.example.apnabazaar.models.bidhistoryModel;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
