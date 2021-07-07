@@ -33,12 +33,8 @@
         <activity android:name=".myfolder.bidhistory" />
         <activity android:name=".layout.order_history" />
         <activity android:name=".Profile" />
-        <activity android:name=".myfolder.register" >
-
-        </activity>
-        <activity android:name=".myfolder.MainActivity">
-
-        </activity>
+        <activity android:name=".myfolder.register"></activity>
+        <activity android:name=".myfolder.MainActivity"></activity>
         <activity android:name=".myfolder.login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

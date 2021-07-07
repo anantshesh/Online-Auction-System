@@ -57,7 +57,8 @@ public class register extends AppCompatActivity {
         register_b = findViewById(R.id.register_button);
         login_b = findViewById(R.id.login_register);
         spinner = findViewById(R.id.sellorbuy);
-        ArrayAdapter<CharSequence> adapterCategoryOfItem = ArrayAdapter.createFromResource(register.this, R.array.type, android.R.layout.simple_spinner_item);
+        ArrayAdapter<CharSequence> adapterCategoryOfItem = ArrayAdapter.createFromResource(
+                register.this, R.array.type, android.R.layout.simple_spinner_item);
         adapterCategoryOfItem.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapterCategoryOfItem);
 

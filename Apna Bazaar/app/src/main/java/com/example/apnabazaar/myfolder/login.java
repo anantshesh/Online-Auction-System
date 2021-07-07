@@ -19,6 +19,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.apnabazaar.R;
+import com.example.apnabazaar.Utils;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
@@ -59,10 +60,6 @@ public class login extends AppCompatActivity {
 
 
 
-
-
-
-
         m_email = findViewById(R.id.email_login);
         password = findViewById(R.id.password_login);
         progressBar = findViewById(R.id.progress_login);
@@ -75,10 +72,8 @@ public class login extends AppCompatActivity {
         m_state = findViewById(R.id.state);
         m_pincode = findViewById(R.id.pincode);
 
-
-
-
         login_b = findViewById(R.id.login_button);
+
 
        /*SharedPreferences pref = getSharedPreferences("apna_bazaar",MODE_PRIVATE);
         try{
@@ -101,9 +96,28 @@ public class login extends AppCompatActivity {
                 String memail = m_email.getText().toString().trim();
                 String mpassword = password.getText().toString().trim();
 
+                //Junit Test for email validation
+                boolean isValid = Utils.checkEmailForValidity(m_email.getText().toString());
+
+                if(isValid){
+                    Toast.makeText(login.this, "Eamil is valid", Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    Toast.makeText(login.this, "Invaild Email", Toast.LENGTH_SHORT).show();
+                }
+
                 if(TextUtils.isEmpty(memail)){
                     m_email.setError("Invalid Email");
                     return;
+                }
+
+                //Junit Test for Password validation
+                boolean isPasswordValid = Utils.checkPasswordForValidity(password.getText().toString());
+                if(isPasswordValid){
+                    Toast.makeText(login.this, "Password is valid", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Toast.makeText(login.this, "Invalid Password", Toast.LENGTH_SHORT).show();
                 }
 
                 if(TextUtils.isEmpty(mpassword)){

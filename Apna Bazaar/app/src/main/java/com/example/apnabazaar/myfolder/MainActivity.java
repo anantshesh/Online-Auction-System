@@ -70,7 +70,6 @@ public class MainActivity extends AppCompatActivity {
     String myUid, myEmail, userTpye;
 
     private DrawerLayout drawerLayout;
-
     private ActionBarDrawerToggle actionBarDrawerToggle;
     private NavigationView navigationView ;
     BottomNavigationView bottomNavigationView;
@@ -433,6 +432,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
 
 
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {

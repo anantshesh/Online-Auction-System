@@ -106,11 +106,6 @@ public class sellproduct extends AppCompatActivity {
 
 
 
-
-
-
-
-
     LocalDate currentDate;
 
    private int mDay, mHour, mMinute, mSecond;
@@ -249,21 +244,8 @@ public class sellproduct extends AppCompatActivity {
         //place = findViewById(R.id.city);
         upi = findViewById(R.id.upiid);
 
-      //date time and duration
-
-        //final Spinner spinner = (Spinner) findViewById(R.id.duration);
-
-
-
-
-
-
-
 
        currentDate = LocalDate.now(ZoneId.systemDefault());
-
-
-
 
 
        // date = findViewById(R.id.startDate);
@@ -275,8 +257,6 @@ public class sellproduct extends AppCompatActivity {
       //date.setOnClickListener(this);
 
       //time.setOnClickListener(this);
-
-
 
 
         image = findViewById(R.id.image);
@@ -318,6 +298,7 @@ public class sellproduct extends AppCompatActivity {
                 showImagePickDialog();
             }
         });
+
 
         setTimeButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -363,10 +344,6 @@ public class sellproduct extends AppCompatActivity {
                 } catch (Exception c) {
                     c.printStackTrace();
                 }
-
-
-
-
 
 
                 final String m_title = title.getText().toString().trim();
@@ -487,15 +464,7 @@ public class sellproduct extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
-
     }
-
-
 
     //Need to add final Sting m_quantity in the uploadData method below
 
